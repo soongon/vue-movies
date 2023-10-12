@@ -1,23 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+const emit = defineEmits(['searchTextInput']);
 
-const searchText = ref('');
-
-function onSearchTextInput() {
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MDM3YTAwN2ZhMmE5MzM1NTdmNWYyMzBlMGYyZTYwZiIsInN1YiI6IjY0OTkzOGVkNmY0M2VjMDBjNWM3MmY4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Rx-ZZRTbVM_ZeG4dP60TI56W8kUOt5v1pAJNwRaoQaY'
-        }
-    };
-
-    fetch('https://api.themoviedb.org/3/search/movie?query=' 
-            + searchText.value + '&include_adult=false&language=ko&page=1&region=kr', options)
-    .then(response => response.json())
-    .then(response => console.log(response.results))
-    .catch(err => console.error(err));
-
+function onSearchTextInput(event) {
+    emit('searchTextInput', event.target.value);
 }
 </script>
 
@@ -47,7 +32,6 @@ function onSearchTextInput() {
              id="search-navbar" 
              class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
              placeholder="제목으로 검색.."
-             v-model="searchText"
              @keyup="onSearchTextInput">
     </div>
     <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
