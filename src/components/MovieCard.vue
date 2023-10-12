@@ -1,12 +1,14 @@
 <script setup>
-defineProps(['movie']);
+const props = defineProps(['movie']);
+
+const imageUrl = 'https://image.tmdb.org/t/p/w500' + props.movie.poster_path;
 </script>
 
 <template>
     
 <div class="m-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg" src="https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQcB9qDJIQQk9Omm_Vo7XZnOXOYSTe_fGItBbRNTkBKQnIbFWaDDxbI-rTdLdQbA8VB5xZ6clMnEN4_7xIqV4ZLMUvJxECKxwqUXYuTFcVnGgn_9GJQz5bIC4s-YHQ2CKMSGQbE20Ei3hp37HXMBrWJjx.jpg?r=c47" alt="" />
+        <img class="rounded-t-lg" :src="imageUrl" alt="" />
     </a>
     <div class="p-5">
         <a href="#">
